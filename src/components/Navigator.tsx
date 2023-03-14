@@ -1,6 +1,7 @@
-import { Outlet } from "react-router-dom";
-import { UserRole } from "../store/data/interface.d";
-import { userStore } from "../store/state";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import { UserRole } from '../store/data/interface.d';
+import userStore from '../store/state';
 
 function Navigator() {
   const user = userStore();
@@ -10,13 +11,14 @@ function Navigator() {
       [임시 네비게이션]
       <span> </span>
       <button
+        type="button"
         onClick={(): void =>
           user.setRole(
             user.role === UserRole.GUEST ? UserRole.USER : UserRole.GUEST
           )
         }
       >
-        {user.role === UserRole.GUEST ? "login" : "logout"}
+        {user.role === UserRole.GUEST ? 'login' : 'logout'}
       </button>
       <span> </span>
       <a href="/">메인</a>

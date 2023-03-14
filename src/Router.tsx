@@ -1,48 +1,49 @@
+import React from 'react';
 import {
   createBrowserRouter,
   redirect,
   RouterProvider,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import Navigator from "./components/Navigator";
-import Login from "./pages/Login";
-import Main from "./pages/Main";
-import Mypage from "./pages/Mypage";
-import Zim from "./pages/Zim";
-import Zims from "./pages/Zims";
-import { UserRole } from "./store/data/interface.d";
-import { userStore } from "./store/state";
+import Navigator from './components/Navigator';
+import Login from './pages/Login';
+import Main from './pages/Main';
+import Mypage from './pages/Mypage';
+import Zim from './pages/Zim';
+import Zims from './pages/Zims';
+import { UserRole } from './store/data/interface.d';
+import userStore from './store/state';
 
 function Router() {
   const user = userStore();
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: <Navigator />,
-      loader: () => user.role === UserRole.GUEST && redirect("/login"),
+      loader: () => user.role === UserRole.GUEST && redirect('/login'),
       children: [
         {
           index: true,
           element: <Main />,
         },
         {
-          path: "/zims/*",
+          path: '/zims/*',
           children: [
             { index: true, element: <Zims /> },
-            { path: ":zimNumber", element: <Zim /> },
+            { path: ':zimNumber', element: <Zim /> },
           ],
         },
         {
-          path: "/mypage",
+          path: '/mypage',
           element: <Mypage />,
         },
       ],
     },
     // login을 root 자식에 포함되지 않게 하여, 접근 권한 제어.
     {
-      path: "/login",
+      path: '/login',
       element: <Login />,
-      loader: () => user.role !== UserRole.GUEST && redirect("/"),
+      loader: () => user.role !== UserRole.GUEST && redirect('/'),
     },
   ]);
 
