@@ -14,7 +14,7 @@ function Login() {
 
   return (
     <>
-      Login Page
+      Login Page 로그인해주세여
       <br />
       <button type="button" onClick={setLogin}>
         DO LOGIN

@@ -5,7 +5,6 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import Navigator from './components/Navigator';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Mypage from './pages/Mypage';
@@ -13,13 +12,14 @@ import Zim from './pages/Zim';
 import Zims from './pages/Zims';
 import { UserRole } from './store/data/interface.d';
 import userStore from './store/state';
+import GlobalOutlet from './components/GlobalOutlet';
 
 function Router() {
   const user = userStore();
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Navigator />,
+      element: <GlobalOutlet />,
       loader: () => user.role === UserRole.GUEST && redirect('/login'),
       children: [
         {

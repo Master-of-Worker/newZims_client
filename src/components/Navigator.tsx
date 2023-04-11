@@ -1,37 +1,27 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { UserRole } from '../store/data/interface.d';
-import userStore from '../store/state';
+import { useNavigate } from 'react-router-dom';
 
 function Navigator() {
-  const user = userStore();
-
+  const navigete = useNavigate();
   return (
-    <>
-      [임시 네비게이션]
-      <span> </span>
-      <button
-        type="button"
-        onClick={(): void =>
-          user.setRole(
-            user.role === UserRole.GUEST ? UserRole.USER : UserRole.GUEST
-          )
-        }
+    <div className="text-3xl py-3 flex justify-between items-center">
+      <div
+        role="button"
+        className="cursor-pointer"
+        onClick={() => navigete('/')}
       >
-        {user.role === UserRole.GUEST ? 'login' : 'logout'}
-      </button>
-      <span> </span>
-      <a href="/">메인</a>
-      <span> | </span>
-      <a href="/zims">메인(리스트)페이지</a>
-      <span> | </span>
-      <a href="/zims/1">메인(상세)페이지</a>
-      <span> | </span>
-      <a href="/mypage">마이페이지</a>
-      <br />
-      <br />
-      <Outlet />
-    </>
+        New
+        <br />
+        Jims 🧳
+      </div>
+      <div
+        role="button"
+        className="p-3 bg-white w-14 text-center rounded-full cursor-pointer text-2xl"
+        onClick={() => navigete('/mypage')}
+      >
+        🍅
+      </div>
+    </div>
   );
 }
 
