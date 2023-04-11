@@ -12,7 +12,7 @@ function Navigator() {
       >
         New
         <br />
-        Jims 🧳
+        Zims 🧳
       </div>
       <div
         role="button"
